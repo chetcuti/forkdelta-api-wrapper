@@ -4,17 +4,24 @@ A very simple PHP wrapper for the ForkDelta API.
 
 Using a token's symbol you can retrieve its contract address, number of decimal places, volume, last price, and so on. See below for the full command list.
 
+Installing
+----------
+```
+composer require chetcuti/forkdelta-api-wrapper
+```
+
 Usage
 -----
 ```
-require_once 'ForkDelta.php';  
-$api = new ForkDelta\Api();
- 
-$api->printAddress('PAR');
-```
+require_once '/vendor/autoload.php';
+$api = new ForkDeltaAW\ForkDeltaAW();
 
-Prints PAR's Contract Address:  
-0x1beef31946fbbb40b877a72e4ae04a8d1a5cee06
+// Print the contract address for PAR
+$api->printAddress('PAR');
+
+// Print the last price of PAR
+$api->printLastPrice('PAR');
+```
 
 Command List
 ------------
@@ -26,6 +33,11 @@ printLastPrice
 printBidPrice  
 printAskPrice  
 printUpdated
+
+Requirements
+------------
+- PHP 5.3+  
+- cURL
 
 Support
 -------

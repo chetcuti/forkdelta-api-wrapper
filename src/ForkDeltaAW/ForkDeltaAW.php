@@ -1,7 +1,7 @@
 <?php
-namespace ForkDelta;
+namespace ForkDeltaAW;
 
-class Api
+class ForkDeltaAW
 {
     public $symbol_data;
     public $ticker_data;

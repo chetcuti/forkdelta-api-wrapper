@@ -1,0 +1,25 @@
+{
+    "name": "chetcuti/forkdelta-api-wrapper",
+    "type": "library",
+    "description": "ForkDelta API Wrapper",
+    "keywords": ["forkdelta","api","wrapper","curl"],
+    "homepage": "https://github.com/chetcuti/forkdelta-api-wrapper",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Greg Chetcuti",
+            "email": "greg@chetcuti.com",
+            "homepage": "http://chetcuti.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "ext-curl": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "ForkDeltaAW\\": "src/ForkDeltaAW/"
+        }
+    }
+}
