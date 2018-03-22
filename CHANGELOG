@@ -1,4 +1,8 @@
 ForkDelta API Wrapper CHANGELOG
 ===============================
+v1.01.00    2018-03-21
+- Change from GNU GPL to MIT License
+- Prepare ForkDeltaAW for Packagist & Composer
+
 v1.00.00    2018-03-20
 - Initial release
