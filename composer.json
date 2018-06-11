@@ -21,5 +21,12 @@
         "psr-4": {
             "ForkDeltaAW\\": "src/ForkDeltaAW/"
         }
+    },
+    "autoload-dev": {
+        "psr-4": { "Tests\\ForkDeltaAW\\": "tests/ForkDeltaAW" }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.2",
+        "php-mock/php-mock": "^2.0"
     }
 }
