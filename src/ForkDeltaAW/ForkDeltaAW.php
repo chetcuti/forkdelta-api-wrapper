@@ -3,7 +3,7 @@ namespace ForkDeltaAW;
 
 class ForkDeltaAW
 {
-    const SYMBOL_DATA_URL = 'https://raw.githubusercontent.com/forkdelta/forkdelta.github.io/master/config/main.json';
+    const SYMBOL_DATA_URL = 'https://forkdelta.app/config/main.json';
     const TICKER_DATA_URL = 'https://api.forkdelta.com/returnTicker';
 
     private $symbol_data;
