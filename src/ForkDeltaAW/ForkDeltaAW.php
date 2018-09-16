@@ -17,6 +17,8 @@ class ForkDeltaAW
         $full_url = 'https://raw.githubusercontent.com/forkdelta/forkdelta.github.io/master/config/main.json';
         $handle = curl_init($full_url);
         curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($handle, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($handle, CURLOPT_SSL_VERIFYPEER, false);
         $result = curl_exec($handle);
         curl_close($handle);
         $decoded_result = json_decode($result, true);
@@ -28,6 +30,8 @@ class ForkDeltaAW
         $full_url = 'https://api.forkdelta.com/returnTicker';
         $handle = curl_init($full_url);
         curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($handle, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($handle, CURLOPT_SSL_VERIFYPEER, false);
         $result = curl_exec($handle);
         curl_close($handle);
         $decoded_result = json_decode($result, true);
