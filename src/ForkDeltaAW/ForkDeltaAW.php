@@ -3,44 +3,45 @@ namespace ForkDeltaAW;
 
 class ForkDeltaAW
 {
-    public $symbol_data;
-    public $ticker_data;
+    const SYMBOL_DATA_URL = 'https://forkdelta.app/config/main.json';
+    const TICKER_DATA_URL = 'https://api.forkdelta.com/returnTicker';
 
-    public function __construct()
-    {
-        $this->symbol_data = $this->getSymbolData();
-        $this->ticker_data = $this->getTickerData();
-    }
+    private $symbol_data;
+    private $ticker_data;
 
     public function getSymbolData()
     {
-        $full_url = 'https://raw.githubusercontent.com/forkdelta/forkdelta.github.io/master/config/main.json';
-        $handle = curl_init($full_url);
+        if ($this->symbol_data) {
+            return $this->symbol_data;
+        }
+        $handle = curl_init(self::SYMBOL_DATA_URL);
         curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($handle, CURLOPT_SSL_VERIFYHOST, false);
         curl_setopt($handle, CURLOPT_SSL_VERIFYPEER, false);
         $result = curl_exec($handle);
         curl_close($handle);
         $decoded_result = json_decode($result, true);
-        return $decoded_result['tokens'];
+        return ($this->symbol_data = $decoded_result['tokens']);
     }
 
     public function getTickerData()
     {
-        $full_url = 'https://api.forkdelta.com/returnTicker';
-        $handle = curl_init($full_url);
+        if ($this->ticker_data) {
+            return $this->ticker_data;
+        }
+        $handle = curl_init(self::TICKER_DATA_URL);
         curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($handle, CURLOPT_SSL_VERIFYHOST, false);
         curl_setopt($handle, CURLOPT_SSL_VERIFYPEER, false);
         $result = curl_exec($handle);
         curl_close($handle);
         $decoded_result = json_decode($result, true);
-        return $decoded_result;
+        return ($this->ticker_data = $decoded_result);
     }
 
     public function getAddress($symbol)
     {
-        foreach ($this->symbol_data AS $single_result) {
+        foreach ($this->getSymbolData() AS $single_result) {
 
             if ($single_result['name'] == $symbol) {
 
@@ -55,7 +56,7 @@ class ForkDeltaAW
 
     public function getDecimals($symbol)
     {
-        foreach ($this->symbol_data AS $single_result) {
+        foreach ($this->getSymbolData() AS $single_result) {
 
             if ($single_result['name'] == $symbol) {
 
@@ -82,7 +83,7 @@ class ForkDeltaAW
     {
         $address = $this->getAddress($symbol);
 
-        foreach ($this->ticker_data AS $single_result) {
+        foreach ($this->getTickerData() AS $single_result) {
 
             if ($single_result['tokenAddr'] == $address) {
 
@@ -98,7 +99,7 @@ class ForkDeltaAW
     {
         $address = $this->getAddress($symbol);
 
-        foreach ($this->ticker_data AS $single_result) {
+        foreach ($this->getTickerData() AS $single_result) {
 
             if ($single_result['tokenAddr'] == $address) {
 
@@ -115,7 +116,7 @@ class ForkDeltaAW
         $address = $this->getAddress($symbol);
         $decimals = $this->getDecimals($symbol);
 
-        foreach ($this->ticker_data AS $single_result) {
+        foreach ($this->getTickerData() AS $single_result) {
 
             if ($single_result['tokenAddr'] == $address) {
 
@@ -132,7 +133,7 @@ class ForkDeltaAW
         $address = $this->getAddress($symbol);
         $decimals = $this->getDecimals($symbol);
 
-        foreach ($this->ticker_data AS $single_result) {
+        foreach ($this->getTickerData() AS $single_result) {
 
             if ($single_result['tokenAddr'] == $address) {
 
@@ -149,7 +150,7 @@ class ForkDeltaAW
         $address = $this->getAddress($symbol);
         $decimals = $this->getDecimals($symbol);
 
-        foreach ($this->ticker_data AS $single_result) {
+        foreach ($this->getTickerData() AS $single_result) {
 
             if ($single_result['tokenAddr'] == $address) {
 
@@ -165,7 +166,7 @@ class ForkDeltaAW
     {
         $address = $this->getAddress($symbol);
 
-        foreach ($this->ticker_data AS $single_result) {
+        foreach ($this->getTickerData() AS $single_result) {
 
             if ($single_result['tokenAddr'] == $address) {
 
